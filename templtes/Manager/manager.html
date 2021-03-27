@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="static/img/titlelogo123.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    {% block css %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Hostel Management System</title>
+    <!-- Custom fonts for this template-->
+    <link href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet"
+        type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{{url_for('static',filename='css/sb-admin-2.min-01.css')}}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        {% block sidenavabar %}
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/managerhome">
+                <div class="sidebar-brand-icon rotate-n-15">
+                    <i class="fas fa-laugh-wink"></i>
+                </div>
+                <div class="sidebar-brand-text mx-3">Hostel<sup>@</sup></div>
+            </a>
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0">
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/managerhome">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Home</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Main Pages
+            </div>
+            <!-- Nav Item - Profile -->
+            <li class="nav-item">
+                <a class="nav-link" href="/profilemanager">
+                    <i class="fas fa-fw fa-user-tie"></i>
+                    <span>Profile</span></a>
+            </li>
+            <!-- Nav Item - Register -->
+            <li class="nav-item">
+                <a class="nav-link" href="/createAccountresident">
+                    <i class="fas fa-fw fa-sign-in-alt"></i>
+                    <span>Register A Resident</span></a>
+            </li>
+            <!-- Nav Item - Register -->
+            <li class="nav-item">
+                <a class="nav-link" href="/addWorker">
+                    <i class="fas fa-fw fa-registered"></i>
+                    <span>Register A Worker</span></a>
+            </li>
+            <!-- Nav Item - Register -->
+            <li class="nav-item">
+                <a class="nav-link" href="/addFood">
+                    <i class="fas fa-fw fa-utensils"></i>
+                    <span>Add A Fast Food</span></a>
+            </li>
+    <!-- Nav Item - Register -->
+    <li class="nav-item">
+        <a class="nav-link" href="/changinRoom">
+            <i class="fas fa-fw fa-plus-square"></i>
+            <span>Add Rooms</span></a>
+    </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/residents">
+                    <i class="fas fa-fw fa-id-card"></i>
+                    <span>Residents Detail</span></a>
+            </li>
+            <!-- Nav Item - Login -->
+            <li class="nav-item">
+                <a class="nav-link" href="/Rooms">
+                    <i class="fas fa-fw fa-calendar-week"></i>
+                    <span>Rooms Detail</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/workers">
+                    <i class="fas fa-fw fa-stream"></i>
+                    <span>Workers Detail</span></a>
+            </li>
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/foods">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Foods Detail</span></a>
+            </li>
+            <!-- Nav Item - Forgot Password -->
+            <li class="nav-item">
+                <a class="nav-link" href="/changepasswordmanager">
+                    <i class="fas fa-fw fa-key"></i>
+                    <span>Change Password</span></a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Messages Inbox
+            </div>
+            <!-- Nav Item - Register -->
+            <li class="nav-item">
+                <a class="nav-link" href="/sendMessageManager">
+                    <i class="fas fa-fw fa-sms"></i>
+                    <span>Send Message</span></a>
+            </li>
+            <!-- Nav Item - Forgot Password -->
+            <li class="nav-item">
+                <a class="nav-link" href="/recieveMessageManager">
+                    <i class="fas fa-fw fa-envelope-open"></i>
+                    <span>Recieved Messages</span></a>
+            </li>
+            <!-- Nav Item - Complains -->
+            <li class="nav-item">
+                <a class="nav-link" href="/complains">
+                    <i class="fas fa-fw fa-envelope"></i>
+                    <span>Recieved Complains</span></a>
+            </li>
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Logout
+            </div>
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </li>
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+        </ul>
+        <!-- End of Sidebar -->
+        {% endblock %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-success" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Manager</span>
+                            </a>
+                        </li>
+                        <div class="topbar-divider d-none d-sm-block"></div>
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{(variable)}}</span>
+                                <img class="img-profile rounded-circle" src="static/img/undraw_profile.svg">
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                {% block body %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Home</h1>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total Residents</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{totalresidents}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Total Workers</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{totalworkers}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Foods
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{totalfoods}}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-hamburger fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pending Requests Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                Total Rooms Types</div>
+                                            <div class="h5 mb-0 font-bed text-gray-800">{{types}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fas fa-hotel fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Row -->
+
+                    <div class="row card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-success">Overview of Hostel</h6>
+                        </div>
+                        <br>
+                        <div class="col-xl-12 col-lg-12">
+                            <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0"
+                                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                                        aria-label="Slide 2"></button>
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                                        aria-label="Slide 3"></button>
+                                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3"
+                                        aria-label="Slide 4"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img style="width: 100%; height: 100%;" src="static/img/overview/pic2.jpg"
+                                            class="d-block w-100">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img style="width: 100%; height: 100%;" src="static/img/overview/pic1.jpg"
+                                            class="d-block w-100">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="static/img/overview/pic3.jpg" style="width: 100%; height: 100%;"
+                                            class="d-block w-100">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="static/img/overview/pic4.jpg" style="width: 100%; height: 100%;"
+                                            class="d-block w-100">
+                                    </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <!-- Content Row -->
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <!-- Illustrations -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-success">Facilities</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                            src="static/img/undraw_posting_photo.svg" alt="">
+                                    </div>
+                                    <p>Add Some more Price for Giving Good Facilities of Rooms.You Can undraw your money
+                                        if Facilities are not good for Your.Internet , LCD and Attach Washroms and Parks
+                                        are Facilities.Completely enjoy all Facilities!</p>
+                                    <a class="text-success" target="_blank" rel="nofollow" href="#">Browse For knowing more about
+                                        Facilities&rarr;</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mb-4">
+                            <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-success">Rooms Detail</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>Free Rooms are Available For You If you want any Rooms then You can see above
+                                        Detail of Rooms.Price of Rooms You Can See On Room Buking Page. Contact Us for
+                                        More Information about Rooms and Price.</p>
+                                    <p class="mb-0">Before Booking Rooms, you should know about Rooms Price and
+                                        Facilities.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endblock %}
+
+            </div>
+            <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy;hostelmanagementsystem2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-success" href="/">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block script %}
+    <!-- Bootstrap core JavaScript-->
+    <script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{{url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{url_for('static',filename='vendor/chart.js/Chart.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{url_for('static',filename='js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{url_for('static',filename='js/demo/chart-pie-demo.j')}}"></script>
+    {% endblock %}
+</body>
+
+</html>

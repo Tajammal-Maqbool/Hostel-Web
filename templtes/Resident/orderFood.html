@@ -1,0 +1,179 @@
+{% extends "Resident/resident.html" %}
+{% block css %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Hostel Management System</title>
+<!-- Custom fonts for this template-->
+<link href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+<!-- Custom styles for this template-->
+<link href="{{url_for('static',filename='css/sb-admin-2.min-02.css')}}" rel="stylesheet">
+<style>
+    #backgroundimg {
+        background-image: url("static/img/pic4.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+</style>
+{% endblock %}
+{% block navbar %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/resident">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Hostel<sup>@</sup></div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="/resident">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Main Pages
+    </div>
+    <!-- Nav Item - Profile -->
+    <li class="nav-item">
+        <a class="nav-link" href="/profileresident">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Profile</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/getRoom">
+            <i class="fas fa-fw fa-bed"></i>
+            <span>Allotment of Room</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/orderfood">
+            <i class="fas fa-fw fa-pizza-slice"></i>
+            <span>Order Any Fast Food</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/foodDetail">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Foods Detail</span></a>
+    </li>
+    <!-- Nav Item - Forgot Password -->
+    <li class="nav-item">
+        <a class="nav-link" href="/forgotpinresident">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Change Password</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Messages Inbox
+    </div>
+    <!-- Nav Item - Complains -->
+    <li class="nav-item">
+        <a class="nav-link" href="/sendComplains">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Send Complains</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Logout
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+{% endblock %}
+{% block body %}
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Order Any Fast Food</h1>
+    </div>
+    <p class="mb-4">Here You can get any fast food According To Your demand.See Below Prices of All foods that are in our Hostel.
+        .Any <a class="text-info" href="#">Updation </a>in Prices of Foods , You Can See there.</p>
+    <div id="backgroundimg" class="card mb-4 p-5 text-gray-200 shadow row">
+        <div class="justify-content-center">
+            <br>
+            <div class="d-sm-flex align-items-center justify-content-center mb-4">
+                <h1 class="h3 mb-0">Order Fast Food</h1>
+            </div>
+            <br>
+            <div class="p-5">
+                <form class="user" action="/orderfoodnow" method="POST">
+                    <div class="form-group">
+                        <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail"
+                            aria-describedby="emailHelp" placeholder="Enter Email Address..." required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="pin" class="form-control form-control-user" id="exampleInputPassword"
+                            placeholder="Password" required="required">
+                    </div>
+                    <div class="dropdown mb-4">
+                        &nbsp; <label for="works">Enter Fast Food:</label>
+                        <select style="box-shadow: none;border-color: #858796;" name="food"
+                            class="form-select btn btn-info btn-block btn-user" aria-label="Default select example"
+                            required="required">
+                            {% for food in foodList %}
+                            <option value="{{food.name}}">{{food.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="quantity" class="form-control form-control-user" id="exampleInput"
+                            placeholder="Quantity" required="required">
+                    </div>
+                    <br>
+                    <br>
+                    <button type="submit" onclick="checkid()" class="btn btn-info btn-user btn-block">
+                        Order Food
+                    </button>
+                </form>
+                </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<!-- Bootstrap core JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
+
+{% endblock %}

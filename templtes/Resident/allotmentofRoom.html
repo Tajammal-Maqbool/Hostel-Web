@@ -1,0 +1,190 @@
+{% extends "Resident/resident.html" %}
+{% block css %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Hostel Management System</title>
+<!-- Custom fonts for this template-->
+<link href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+<!-- Custom styles for this template-->
+
+<link href="{{url_for('static',filename='css/sb-admin-2.min-02.css')}}" rel="stylesheet">
+<style>
+    #backgroundimg {
+        background-image: url("static/img/pic2.jpg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+    }
+</style>
+{% endblock %}
+{% block navbar %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/resident">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Hostel<sup>@</sup></div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="/resident">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Main Pages
+    </div>
+    <!-- Nav Item - Profile -->
+    <li class="nav-item">
+        <a class="nav-link" href="/profileresident">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Profile</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/getRoom">
+            <i class="fas fa-fw fa-bed"></i>
+            <span>Allotment of Room</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/orderfood">
+            <i class="fas fa-fw fa-pizza-slice"></i>
+            <span>Order Any Fast Food</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/foodDetail">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Foods Detail</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/orderfooddetail">
+            <i class="fas fa-fw fa-utensils"></i>
+            <span>Ordered Foods Detail</span></a>
+    </li>
+    <!-- Nav Item - Forgot Password -->
+    <li class="nav-item">
+        <a class="nav-link" href="/forgotpinresident">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Change Password</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Messages Inbox
+    </div>
+    <!-- Nav Item - Complains -->
+    <li class="nav-item">
+        <a class="nav-link" href="/sendComplains">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Send Complains</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Logout
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+{% endblock %}
+{% block body %}
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Allotment of Room</h1>
+    </div>
+    <p class="mb-4">Here You can get Room According To Your demand.See Below Prices of All Rooms that are in our Hostel.
+        .Any <a class="text-info" href="#">Updation </a>in Prices of Room, You Can See Here.</p>
+    <div id="backgroundimg" class="card p-4 text-gray-400 shadow row">
+        <div class="justify-content-center">
+            <br>
+            <div class="d-sm-flex align-items-center justify-content-center mb-4">
+                <h1 class="h3 mb-0">Get Room</h1>
+            </div>
+            <br>
+            <div class="p-5">
+                <form class="user" action="/getnewRoom" method="POST">
+                    <div class="form-group">
+                        <input type="email" name="myemail" class="form-control form-control-user" id="exampleInputEmail"
+                            aria-describedby="emailHelp" placeholder="Enter Email Address..." required="required">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="pin" class="form-control form-control-user"
+                            id="exampleInputPassword" placeholder="Password" required="required">
+                    </div>
+                    <div class="dropdown mb-4">
+                        &nbsp; <label for="works">Enter Room Type:</label>
+                        <select style="box-shadow: none;border-color: #858796;" name="room"
+                            class="form-select btn btn-info btn-block btn-user" aria-label="Default select example"
+                            required="required">
+                            {% for room in roomlist%}
+                            <option value="{{room.typeRoom}}" style="color: white;">{{room.typeRoom}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <br>
+                    <br>
+                    <button type="submit" onclick="checkid()" class="btn btn-info btn-user btn-block">
+                        Get Room No.
+                    </button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <br>
+        </div>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}
+
+{% block script %}
+<!-- Bootstrap core JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
+
+<!-- Page level plugins -->
+<script src="{{url_for('static',filename='vendor/chart.js/Chart.min.js')}}"></script>
+
+<!-- Page level custom scripts -->
+<script src="{{url_for('static',filename='js/demo/chart-area-demo.js')}}"></script>
+<script src="{{url_for('static',filename='js/demo/chart-pie-demo.js')}}"></script>
+<script src="{{url_for('static',filename='js/login.js')}}"></script>
+{% endblock %}

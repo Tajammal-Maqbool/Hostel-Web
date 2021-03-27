@@ -1,0 +1,3 @@
+Burger ,50,10
+Burger chicken,60,40
+Pizza ,300,8

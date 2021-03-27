@@ -1,0 +1,219 @@
+{% extends "Manager/manager.html" %}
+{% block css %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Hostel Management System</title>
+
+<!-- Custom fonts for this template-->
+<link href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+<link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="{{url_for('static',filename='css/sb-admin-2.min-01.css')}}" rel="stylesheet">
+
+{% endblock %}
+
+{% block sidenavabar %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-success sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/managerhome">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Hostel<sup>@</sup></div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="/managerhome">
+            <i class="fas fa-fw fa-home"></i>
+            <span>Home</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Main Pages
+    </div>
+    <!-- Nav Item - Profile -->
+    <li class="nav-item">
+        <a class="nav-link" href="/profilemanager">
+            <i class="fas fa-fw fa-user-tie"></i>
+            <span>Profile</span></a>
+    </li>
+    <!-- Nav Item - Register -->
+    <li class="nav-item">
+        <a class="nav-link" href="/createAccountresident">
+            <i class="fas fa-fw fa-sign-in-alt"></i>
+            <span>Register A Resident</span></a>
+    </li>
+    <!-- Nav Item - Register -->
+    <li class="nav-item">
+        <a class="nav-link" href="/addWorker">
+            <i class="fas fa-fw fa-registered"></i>
+            <span>Register A Worker</span></a>
+    </li>
+    <!-- Nav Item - Register -->
+    <li class="nav-item active">
+        <a class="nav-link" href="/addFood">
+            <i class="fas fa-fw fa-utensils"></i>
+            <span>Add A Fast Food</span></a>
+    </li>
+    <!-- Nav Item - Register -->
+    <li class="nav-item">
+        <a class="nav-link" href="/changinRoom">
+            <i class="fas fa-fw fa-plus-square"></i>
+            <span>Add Rooms</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/residents">
+            <i class="fas fa-fw fa-id-card"></i>
+            <span>Residents Detail</span></a>
+    </li>
+    <!-- Nav Item - Login -->
+    <li class="nav-item">
+        <a class="nav-link" href="/Rooms">
+            <i class="fas fa-fw fa-calendar-week"></i>
+            <span>Rooms Detail</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/workers">
+            <i class="fas fa-fw fa-stream"></i>
+            <span>Workers Detail</span></a>
+    </li>
+    <!-- Nav Item - Tables -->
+    <li class="nav-item">
+        <a class="nav-link" href="/foods">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Foods Detail</span></a>
+    </li>
+    <!-- Nav Item - Forgot Password -->
+    <li class="nav-item">
+        <a class="nav-link" href="/changepasswordmanager">
+            <i class="fas fa-fw fa-key"></i>
+            <span>Change Password</span></a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Messages Inbox
+    </div>
+    <!-- Nav Item - Register -->
+    <li class="nav-item">
+        <a class="nav-link" href="/sendMessageManager">
+            <i class="fas fa-fw fa-sms"></i>
+            <span>Send Message</span></a>
+    </li>
+    <!-- Nav Item - Forgot Password -->
+    <li class="nav-item">
+        <a class="nav-link" href="/recieveMessageManager">
+            <i class="fas fa-fw fa-envelope-open"></i>
+            <span>Recieved Messages</span></a>
+    </li>
+    <!-- Nav Item - Complains -->
+    <li class="nav-item">
+        <a class="nav-link" href="/complains">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Recieved Complains</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading">
+        Logout
+    </div>
+    <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Add Any Fast Food To Menu</h1>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+    <br>
+        <img class="p-2" style="width: 100%;height: 90%;" src="static/img/pic1.jpg">
+    </div>
+    <div class="col-lg-6">
+            <div class="p-2">
+                <br>
+                <br>
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Manager!</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Add a Fast Food!</h1>
+                </div>
+                <br>
+                <form class="user" autocomplete="off" action="/addFastFood" method="POST">
+                    <div class="form-group row">
+                        <div class="col-sm-12 mb-3 mb-sm-0">
+                            <input type="text" name="name1" class="form-control form-control-user" id="exampleFirstName"
+                                placeholder="First Name" required="required">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-12">
+                            <input type="text" name="name2" class="form-control form-control-user" id="exampleLastName"
+                                placeholder="Last Name (if have)">
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="col-sm-6 mb-3 mb-sm-0">
+                            <input type="text" name="quantity" class="form-control form-control-user"
+                                id="exampleQuantity" placeholder="Quantity of Food" required="required">
+                        </div>
+                        <div class="col-sm-6">
+                            <input type="text" name="price" class="form-control form-control-user" id="exampleprice"
+                                placeholder="Price of One Piece" required="required">
+                        </div>
+                    </div>
+                    <br>
+                    <button class="btn btn-success btn-user btn-block">
+                        Add a Fast Food
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+{% block script %}
+<!-- Bootstrap core JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{url_for('static',filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{{url_for('static',filename='vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
+{% endblock %}
