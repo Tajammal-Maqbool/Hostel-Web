@@ -74,6 +74,24 @@ class Rooms:
         self.bookRooms = book+sRoom
         self.startingRoom = sRoom
 
+class RequestResidence:
+    name = ""
+    email = ""
+    pin = ""
+    def __init__(self,name,email,pin):
+        self.name = name
+        self.email = email
+        self.pin = pin
+
+class RequestJobs:
+    name=""
+    email=""
+    job=""
+    def __init__(self,name,email,job):
+        self.name = name
+        self.email = email
+        self.job = job
+
 
 id_list = []
 worker_List = []
@@ -81,6 +99,8 @@ sms_List = []
 complains = []
 food_List = []
 room_List = []
+request_residence=[]
+request_jobs=[]
 MyEmail = ""
 MyPin = ""
 MyName = ""
@@ -146,6 +166,87 @@ def loaddata():
             expen = expen + record[x]
         person = Id(name, email, password, int(roomno), roomtype, int(expen))
         id_list.append(person)
+
+# Save Data of All Residents Requests
+
+
+def saveDataRequestsResidents():
+    global request_residence
+    file_path = path+'/data/residenceRequests.txt'
+    myfile = open(file_path, 'w')
+    myfile.close()
+    for id in request_residence:
+        record = id.name+","+id.email+","+id.pin
+        myfile = open(file_path, 'a')
+        print(record, file=myfile, sep="\n")
+    myfile.close()
+
+# Load Data of All Residents Requests
+
+
+def loaddataReqestsResidence():
+    file_path = path+'/data/residenceRequests.txt'
+    myfile = open(file_path, 'r')
+    records = myfile.read().splitlines()
+    for record in records:
+        name = ""
+        email = ""
+        password = ""
+        i = 0
+        while(record[i] != ","):
+            name = name + record[i]
+            i = i+1
+        i = i+1
+        while(record[i] != ","):
+            email = email + record[i]
+            i = i+1
+        i = i+1
+        for x in range(i, len(record)):
+            password = password + record[x]
+        requests = RequestResidence(name, email, password)
+        request_residence.append(requests)
+
+
+# Save Data of All Jobs Requests
+
+
+def saveDataRequestsJobs():
+    global request_jobs
+    file_path = path+'/data/jobRequests.txt'
+    myfile = open(file_path, 'w')
+    myfile.close()
+    for id in request_jobs:
+        record = id.name+","+id.email+","+id.job
+        myfile = open(file_path, 'a')
+        print(record, file=myfile, sep="\n")
+    myfile.close()
+
+# Load Data of All Jobs Requests
+
+
+def loaddataReqestsJobs():
+    file_path = path+'/data/jobRequests.txt'
+    myfile = open(file_path, 'r')
+    records = myfile.read().splitlines()
+    for record in records:
+        name = ""
+        email = ""
+        job = ""
+        i = 0
+        while(record[i] != ","):
+            name = name + record[i]
+            i = i+1
+        i = i+1
+        while(record[i] != ","):
+            email = email + record[i]
+            i = i+1
+        i = i+1
+        for x in range(i, len(record)):
+            job = job + record[x]
+        requests = RequestJobs(name, email, job)
+        request_jobs.append(requests)
+
+
 
 # Save Data of Manager
 
@@ -847,6 +948,14 @@ def verifyemailmanager(email, password):
         return True
     return False
 
+@app.route("/requestsResidents")
+def requests1():
+    return render_template("Manager/requestResidence.html", variable=managerEmail, MyList=request_residence)
+
+@app.route("/requestsJobs")
+def requests2():
+    return render_template("Manager/requestsJobs.html", variable=managerEmail, MyList=request_jobs)
+
 
 @app.route("/changinRoom")
 def ChangeRoom():
@@ -1083,6 +1192,31 @@ def peopleApply1():
 def peopleApply2():
     return render_template("ApplyJob.html")
 
+@app.route("/applyResidence",methods=['POST','GET'])
+def apply1():
+    if request.method=="POST":
+        name=request.form['name1']+" "+request.form['name2']
+        email = request.form['email']
+        password = request.form['pin']
+        requests = RequestResidence(name, email, password)
+        request_residence.append(requests)
+        saveDataRequestsResidents()
+        return render_template("people.html")
+    return render_template("ResidenceApply.html")
+
+
+@app.route("/applyJob",methods=['POST','GET'])
+def apply2():
+    if request.method=="POST":
+        name=request.form['name1']+" "+request.form['name2']
+        email = request.form['email']
+        job=request.form['job']
+        requests = RequestJobs(name, email, job)
+        request_jobs.append(requests)
+        saveDataRequestsJobs()
+        return render_template("people.html")
+    return render_template("ApplyJob.html")
+
 if __name__ == "__main__":
     loaddata()
     loadOrderedFoods()
@@ -1092,5 +1226,7 @@ if __name__ == "__main__":
     loadComplains()
     loadWokerData()
     loadfoodData()
+    loaddataReqestsJobs()
+    loaddataReqestsResidence()
     loaddataRooms()
     app.run(debug=True,host="0.0.0.0")

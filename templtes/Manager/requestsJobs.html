@@ -6,7 +6,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Hostel Management System</title>
+<title>Hostel Managment System</title>
 
 <!-- Custom fonts for this template -->
 <link href="{{url_for('static',filename='vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
             <span>Workers Detail</span></a>
     </li>
     <!-- Nav Item - Tables -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="/foods">
             <i class="fas fa-fw fa-table"></i>
             <span>Foods Detail</span></a>
@@ -143,7 +143,7 @@
             <span>Requests For Residence</span></a>
     </li>
     <!-- Nav Item - Forgot Password -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="/requestsJobs">
             <i class="fas fa-fw fa-house-user"></i>
             <span>Requests For Jobs</span></a>
@@ -173,40 +173,31 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Foods Detail</h1>
+        <h1 class="h3 mb-0 text-gray-800">Apply For Jobs Detail</h1>
     </div>
-    <p class="mb-4">Here is the complete Data of All Added Foods that data contains Name,Price and Quantity.
-        Any <a class="text-success" href="#">Updation </a>in Data You Can See Here.</p>
+    <p class="mb-4">Here is the complete Data of All Applicant Workers that data contains Name,Job and Email.Any <a class="text-success" href="#">Updation </a>in Data You Can See Here.</p>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-success">Data of Added Foods</h6>
+            <h6 class="m-0 font-weight-bold text-success">Applications For Jobs</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <td>#</td>
-                            <th>Name of Foods</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <td>Action</td>
+                            <th>#</th>
+                            <th>Name of Applicant</th>
+                            <th>Email of Applicant</th>
+                            <th>Applied Job</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for id in MyList %}
                         <tr>
-                           <form action="/deleteFood" method="POST">
-                            <td><input style="display: none;" name="myindex" value="{{loop.index}}"></input>{{loop.index}}</td>
-                            <td>{{id.name}}</td>
-                            <td>{{id.price}}</td>
-                            <td>{{id.quantity}}</td>
-                            <td><button type="submit" style="box-shadow: none;" class="btn btn-block">
-                                <span>
-                                    <i class="fas fa-trash"></i>
-                                </span>
-                            </button></td>
-                            </form>
+                               <td>{{loop.index}}</td>
+                               <td>{{id.name}}</td>
+                               <td>{{id.email}}</td>
+                               <td>{{id.job}}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
