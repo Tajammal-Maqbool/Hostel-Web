@@ -699,21 +699,53 @@ def Food():
 def ResidentDetail():
     return render_template("Manager/residentDetail.html", variable=managerEmail, My_List=id_list)
 
+@app.route("/deleteResident",methods=['POST','GET'])
+def delete1():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        id_list.pop(index)
+        saveData()
+    return render_template("Manager/residentDetail.html", variable=managerEmail, My_List=id_list)
 
 @app.route("/workers")
 def Worker():
     return render_template("Manager/workersDetail.html", variable=managerEmail, MyList=worker_List)
 
+@app.route("/deleteWorker",methods=['POST','GET'])
+def delete2():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        worker_List.pop(index)
+        saveWorkerData()
+    return render_template("Manager/workersDetail.html", variable=managerEmail, MyList=worker_List)
 
 @app.route("/Rooms")
 def MyRoom():
     return render_template("Manager/roomsDetail.html", variable=managerEmail, myList=room_List)
 
+@app.route("/deleteRoom",methods=['POST','GET'])
+def delete3():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        room_List.pop(index)
+        saveDataRooms()
+    return render_template("Manager/roomsDetail.html", variable=managerEmail, myList=room_List)
 
 @app.route("/foods")
 def MyFoods():
     return render_template("Manager/foodDetail.html", variable=managerEmail, MyList=food_List)
 
+@app.route("/deleteFood",methods=['POST','GET'])
+def delete4():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        food_List.pop(index)
+        saveDataFood()
+    return render_template("Manager/foodDetail.html", variable=managerEmail, MyList=food_List)
 
 @app.route("/complains")
 def Mycomplains():
@@ -1041,6 +1073,15 @@ def verifyemailforFood(email, password, foodname, quantity):
 def people():
     return render_template("people.html")
 
+
+@app.route("/applyresidence")
+def peopleApply1():
+    return render_template("ResidenceApply.html")
+
+
+@app.route("/applyjob")
+def peopleApply2():
+    return render_template("ApplyJob.html")
 
 if __name__ == "__main__":
     loaddata()

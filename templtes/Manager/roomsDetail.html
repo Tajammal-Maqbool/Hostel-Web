@@ -174,17 +174,25 @@
                             <th>Total Rooms</th>
                             <th>Booked Rooms</th>
                             <th>Started Room (Booking)</th>
+                            <td>Action</td>
                         </tr>
                     </thead>
                     <tbody>
                         {% for room in myList%}
-                        <tr>
-                            <th name="number">{{loop.index}}</th>
+                        <tr>  
+                           <form action="/deleteRoom" method="POST">
+                            <td><input style="display: none;" name="myindex" value="{{loop.index}}"></input>{{loop.index}}</td>
                             <th>{{room.typeRoom}}</th>
                             <th>{{room.priceRoom}}</th>
                             <th>{{room.totalRooms}}</th>
                             <th>{{room.bookRooms}}</th>
                             <th>{{room.startingRoom}}</th>
+                            <td><button type="submit" style="box-shadow: none;" class="btn btn-block">
+                                <span>
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </button></td>
+                            </form>
                         </tr>
                         {% endfor %}
                     </tbody>

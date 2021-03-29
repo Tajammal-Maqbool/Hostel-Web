@@ -168,18 +168,27 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name of Worker</th>
                             <th>Job of Worker</th>
                             <th>Salary of Worker</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for id in MyList %}
                         <tr>
-                            <td>{{id.name}}</td>
-                            <td>{{id.job}}</td>
-                            <td>{{id.salary}}
-                            </td>
+                           <form action="/deleteWorker" method="POST">
+                               <td><input style="display: none;" name="myindex" value="{{loop.index}}"></input>{{loop.index}}</td>
+                               <td>{{id.name}}</td>
+                               <td>{{id.job}}</td>
+                               <td>{{id.salary}}</td>
+                               <td><button type="submit" style="box-shadow: none;" class="btn btn-block">
+                                   <span>
+                                       <i class="fas fa-trash"></i>
+                                   </span>
+                               </button></td>
+                           </form>
                         </tr>
                         {% endfor %}
                     </tbody>

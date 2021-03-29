@@ -1,3 +1,2 @@
 Asad sajid,Supervisor,20000
 Rafaqt Irslan,cooker,5000
-Sajid Ahmed,Security,10000
