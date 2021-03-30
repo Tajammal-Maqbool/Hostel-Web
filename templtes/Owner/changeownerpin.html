@@ -149,8 +149,12 @@
                             aria-describedby="emailHelp" placeholder="Enter Email Address..." required="required">
                     </div>
                     <div class="form-group">
-                        <input type="password" name="ownerpin" class="form-control form-control-user" id="exampleInputPassword"
-                            placeholder="New Password" required="required">
+                        <div class="input-group">
+                            <input type="password" name="ownerpin" class="form-control form-control-user"  id="exampleInputPassword" placeholder="Password" aria-describedby="button12" required='required'>
+                                <button class="btn btn-user" onclick="showpassword()" style="border-left:none; border-color: #d1d3e2;" type="button" id="button12">
+                                <i id="shape" class="fa fa-eye-slash"></i>
+                                </button>
+                          </div>
                     </div>
                     <button type="submit" onclick="checkid()" class="btn btn-primary btn-user btn-block">
                         Reset Password
@@ -183,5 +187,5 @@
 
 <!-- Page level custom scripts -->
 <script src="{{url_for('static',filename='js/demo/datatables-demo.js')}}"></script>
-<script src="{{url_for('static',filename='js/login.js')}}"></script>
+<script src="{{url_for('static',filename='js/login12.js')}}"></script>
 {% endblock %}
