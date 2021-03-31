@@ -1,3 +1,1 @@
-Ali Ahmed,ali11@gmail.com,1111,801,Couple's Room,6600
-Rafaqt Ali,rafaqt@gmail.com,1111,0,None,0
 Ali Hamza,ali1223@gmail.com,12345,0,None,0

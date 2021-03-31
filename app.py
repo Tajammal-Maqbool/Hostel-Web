@@ -802,10 +802,24 @@ def ResidentDetail():
 
 @app.route("/deleteResident",methods=['POST','GET'])
 def delete1():
+    global complains
     if request.method=="POST":
-        index=request.form['myindex']
-        index=int(index)-1
-        id_list.pop(index)
+        idx=request.form['myindex']
+        idx=int(idx)-1
+        name=id_list[idx].name
+        for record in complains:
+            nameResident=""
+            i=0
+            while(record[i] != ","):
+                i = i+1
+            i = i+1
+            for x in range(i,len(record)):
+                nameResident = nameResident + record[x]
+            if(nameResident==name):
+                complains.pop(complains.index(record))
+                saveComplains()
+        id_list.pop(idx)
+        saveOrerdedFoods()
         saveData()
     return render_template("Manager/residentDetail.html", variable=managerEmail, My_List=id_list)
 
