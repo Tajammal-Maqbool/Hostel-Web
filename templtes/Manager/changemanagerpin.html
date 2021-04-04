@@ -190,6 +190,7 @@
                         <input type="email" name="manageremail" class="form-control form-control-user"
                             id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..."
                             required="required">
+                            <div id="email-valid" style="display: none; margin-left: 15px;"></div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
@@ -198,6 +199,7 @@
                                 <i id="shape" class="fa fa-eye-slash"></i>
                                 </button>
                           </div>
+                          <div id="pin-valid" style="display: none; margin-left: 15px;"></div>
                     </div>
                     <button type="submit" onclick="checkid()" class="btn btn-success btn-user btn-block">
                         Reset Password
@@ -230,5 +232,5 @@
 
 <!-- Page level custom scripts -->
 <script src="{{url_for('static',filename='js/demo/datatables-demo.js')}}"></script>
-<script src="{{url_for('static',filename='js/login12.js')}}"></script>
+<script src="{{url_for('static',filename='js/loginform.js')}}"></script>
 {% endblock %}

@@ -46,6 +46,7 @@
                                     <form class="user" action="/success" method="POST">
                                         <div class="form-group">
                                             <input type="email" name="myemail" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required="required">
+                                      <div id="email-valid" style="display: none; margin-left: 15px;"></div>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -55,6 +56,7 @@
                                                     <i id="shape" class="fa fa-eye-slash"></i>
                                                     </button>
                                               </div>
+                                      <div id="pin-valid" style="display: none; margin-left: 15px;"></div>
                                         </div>
                                         </div>
                                         <div class="form-group">
@@ -103,7 +105,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
-    <script src="{{url_for('static',filename='js/login12.js')}}"></script>
+    <script src="{{url_for('static',filename='js/loginform.js')}}"></script>
 </body>
 
 </html>

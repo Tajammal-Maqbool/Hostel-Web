@@ -49,15 +49,17 @@
                                     <input type="email" name="myemail" class="form-control form-control-user"
                                         id="exampleInputEmail" aria-describedby="emailHelp"
                                         placeholder="Enter Email Address..." required="required">
-                                </div>
+                                        <div id="email-valid" style="display: none; margin-left: 15px;"></div>
+                                    </div>
                                 <div class="form-group">
                                     <div class="input-group">
-                                      <div class="input-group mb-3">
+                                      <div class="input-group">
                                         <input type="password" name="pin" class="form-control form-control-user"  id="exampleInputPassword" placeholder="Password" aria-describedby="button12" required='required'>
                                             <button class="btn btn-user" onclick="showpassword()" style="border-left:none; border-color: #d1d3e2;" type="button" id="button12">
                                             <i id="shape" class="fa fa-eye-slash"></i>
                                             </button>
                                       </div>
+                                      <div id="pin-valid" style="display: none; margin-left: 15px;"></div>
                                 </div>
                                 <br>
                                 <button onclick="checkid()" type="submit" class="btn btn-primary btn-user btn-block">
@@ -85,7 +87,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{url_for('static',filename='js/sb-admin-2.min.js')}}"></script>
-    <script src="{{url_for('static',filename='js/login12.js')}}"></script>
+    <script src="{{url_for('static',filename='js/loginform.js')}}"></script>
 
 </body>
 
