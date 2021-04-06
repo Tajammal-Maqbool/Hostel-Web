@@ -189,15 +189,23 @@
                             <th>Name of Applicant</th>
                             <th>Email of Applicant</th>
                             <th>Applied Job</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for id in MyList %}
                         <tr>
-                               <td>{{loop.index}}</td>
+                            <form action="/deleteJob" method="POST">
+                                <td><input style="display: none;" name="myindex" value="{{loop.index}}"></input>{{loop.index}}</td>
                                <td>{{id.name}}</td>
                                <td>{{id.email}}</td>
                                <td>{{id.job}}</td>
+                               <td><button type="submit" style="box-shadow: none;" class="btn btn-block">
+                                <span>
+                                    <i class="fas fa-trash"></i>
+                                </span>
+                            </button></td>
+                            </form>
                         </tr>
                         {% endfor %}
                     </tbody>

@@ -1,4 +1,0 @@
-One's Person Room,2000,200,0,0
-Two's Person Room,4000,400,600,200
-Couple's Room,6000,600,1201,400
-Family's Room,8000,1000,1800,600

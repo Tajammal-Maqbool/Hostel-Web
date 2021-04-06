@@ -1,2 +1,0 @@
-Burger ,50,10
-Burger chicken,60,40

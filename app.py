@@ -966,10 +966,27 @@ def verifyemailmanager(email, password):
 def requests1():
     return render_template("Manager/requestResidence.html", variable=managerEmail, MyList=request_residence)
 
+@app.route("/deleteResidentapply",methods=['POST','GET'])
+def delete11():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        request_residence.pop(index)
+        saveDataRequestsResidents()
+    return render_template("Manager/requestResidence.html", variable=managerEmail, MyList=request_residence)
+
 @app.route("/requestsJobs")
 def requests2():
     return render_template("Manager/requestsJobs.html", variable=managerEmail, MyList=request_jobs)
 
+@app.route("/deleteJob",methods=['POST','GET'])
+def delete22():
+    if request.method=="POST":
+        index=request.form['myindex']
+        index=int(index)-1
+        request_jobs.pop(index)
+        saveDataRequestsJobs()
+    return render_template("Manager/requestsJobs.html", variable=managerEmail, MyList=request_jobs)
 
 @app.route("/changinRoom")
 def ChangeRoom():
